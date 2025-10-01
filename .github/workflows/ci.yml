@@ -1,4 +1,4 @@
-name: ci
+name: Git Workflow Grader
 
 on:
   push:
@@ -7,161 +7,263 @@ on:
     branches: ["**"]
 
 jobs:
-  commit-policy:
-    name: "📝 GRADE: Git Commit History & Messages"
+  grade-git-workflow:
+    name: "🎓 AUTO-GRADER: Git Workflow Assessment"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
 
-      - name: "✅ GRADE: Commit messages & count (min 8 commits with chore|feature|fix prefixes)"
-        env:
-          MIN_COMMITS: "8"   # change if you want a different minimum
+      - name: "📊 GRADE: Commit Count (20 pts)"
+        id: commit_count
         run: |
           set -e
-          echo "🔍 Validating all commits in repository history"
-          BAD=0
-
-          # Count ALL commits in the repository (not just the push range)
-          ALL_COMMITS=$(git rev-list --no-merges HEAD || true)
-          if [ -z "$ALL_COMMITS" ]; then
-            echo "::error::❌ No commits found in repository."
+          echo "🔍 Checking commit count..."
+          
+          # Count all commits
+          TOTAL_COMMITS=$(git rev-list --count --no-merges HEAD)
+          MIN_COMMITS=15
+          
+          echo "📈 Total commits found: $TOTAL_COMMITS"
+          echo "📋 Minimum required: $MIN_COMMITS"
+          
+          if [ "$TOTAL_COMMITS" -ge "$MIN_COMMITS" ]; then
+            echo "✅ PASS (20/20 pts): $TOTAL_COMMITS commits (required: $MIN_COMMITS+)"
+            echo "COMMIT_COUNT_PASS=true" >> $GITHUB_ENV
+            echo "COMMIT_COUNT_POINTS=20" >> $GITHUB_ENV
+          else
+            echo "::error::❌ FAIL (0/20 pts): Only $TOTAL_COMMITS commits found (need $MIN_COMMITS+)"
+            echo "COMMIT_COUNT_PASS=false" >> $GITHUB_ENV
+            echo "COMMIT_COUNT_POINTS=0" >> $GITHUB_ENV
             exit 1
           fi
 
-          TOTAL_COUNT=$(echo "$ALL_COMMITS" | wc -l | tr -d ' ')
-          echo "📊 Found $TOTAL_COUNT total commits in repository (minimum required: $MIN_COMMITS)"
+      - name: "📝 GRADE: Commit Message Prefixes (25 pts)"
+        id: commit_messages
+        continue-on-error: true
+        run: |
+          set -e
+          echo "🔍 Validating commit message prefixes..."
           
-          if [ "$TOTAL_COUNT" -lt "$MIN_COMMITS" ]; then
-            echo "::error::❌ GRADE FAIL: Found $TOTAL_COUNT total commits; require at least $MIN_COMMITS commits in repository."
-            BAD=1
-          else
-            echo "✅ GRADE PASS: Commit count requirement met ($TOTAL_COUNT >= $MIN_COMMITS)"
-          fi
-
-          echo ""
-          echo "🔍 Checking commit message format for all commits..."
-          for c in $ALL_COMMITS; do
-            MSG=$(git log -1 --pretty=%s "$c")
-            if ! echo "$MSG" | grep -Eiq '^(chore|feature|fix): '; then
-              echo "::error::❌ GRADE FAIL: Commit $c message must start with 'chore: ', 'feature: ', or 'fix: ' — got: $MSG"
-              BAD=1
+          INVALID_COUNT=0
+          ALL_COMMITS=$(git rev-list --no-merges HEAD)
+          
+          for commit in $ALL_COMMITS; do
+            MSG=$(git log -1 --pretty=%s "$commit")
+            
+            # Check if message starts with docs:, chore:, or fix:
+            if ! echo "$MSG" | grep -Eiq '^(docs|chore|fix): '; then
+              echo "::warning::❌ Invalid prefix in commit $commit: $MSG"
+              INVALID_COUNT=$((INVALID_COUNT + 1))
             else
               echo "✅ Valid: $MSG"
             fi
           done
-
-          if [ $BAD -eq 0 ]; then
+          
+          if [ "$INVALID_COUNT" -eq 0 ]; then
             echo ""
-            echo "✅ GRADE PASS: All commit messages follow conventional format!"
+            echo "✅ PASS (25/25 pts): All commit messages have proper prefixes"
+            echo "COMMIT_MSG_PASS=true" >> $GITHUB_ENV
+            echo "COMMIT_MSG_POINTS=25" >> $GITHUB_ENV
+          else
+            echo ""
+            echo "::error::❌ FAIL (0/25 pts): $INVALID_COUNT commits have invalid prefixes"
+            echo "COMMIT_MSG_PASS=false" >> $GITHUB_ENV
+            echo "COMMIT_MSG_POINTS=0" >> $GITHUB_ENV
+            exit 1
           fi
 
-          exit $BAD
-
-  build-test:
-    name: "🧪 GRADE: Code Quality & Testing"
-    runs-on: ubuntu-latest
-    needs: commit-policy
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: "✅ GRADE: Project structure verification"
+      - name: "🌳 GRADE: Branch Creation (20 pts)"
+        id: branches
+        continue-on-error: true
         run: |
-          echo "🔍 Checking required project structure..."
+          set -e
+          echo "🔍 Checking for feature branches..."
+          
+          # Get all branches that have been created (look for question- branches in commits)
+          BRANCH_COUNT=0
+          
+          # Check git reflog or look for merge commits indicating branches
+          for i in $(seq -w 1 15); do
+            BRANCH_NAME="question-$i"
+            # Check if branch exists or existed (in reflog or commit messages)
+            if git log --all --oneline | grep -q "Merge.*$BRANCH_NAME" || \
+               git branch -a | grep -q "$BRANCH_NAME" || \
+               git reflog --all 2>/dev/null | grep -q "$BRANCH_NAME"; then
+              echo "✅ Found evidence of branch: $BRANCH_NAME"
+              BRANCH_COUNT=$((BRANCH_COUNT + 1))
+            fi
+          done
+          
+          echo ""
+          echo "📊 Branches detected: $BRANCH_COUNT out of 15"
+          
+          if [ "$BRANCH_COUNT" -ge 15 ]; then
+            echo "✅ PASS (20/20 pts): $BRANCH_COUNT feature branches created"
+            echo "BRANCH_PASS=true" >> $GITHUB_ENV
+            echo "BRANCH_POINTS=20" >> $GITHUB_ENV
+          elif [ "$BRANCH_COUNT" -ge 10 ]; then
+            PARTIAL=$((BRANCH_COUNT * 20 / 15))
+            echo "::warning::⚠️  PARTIAL ($PARTIAL/20 pts): Only $BRANCH_COUNT branches found"
+            echo "BRANCH_PASS=partial" >> $GITHUB_ENV
+            echo "BRANCH_POINTS=$PARTIAL" >> $GITHUB_ENV
+          else
+            echo "::error::❌ FAIL (0/20 pts): Only $BRANCH_COUNT branches found (need 15)"
+            echo "BRANCH_PASS=false" >> $GITHUB_ENV
+            echo "BRANCH_POINTS=0" >> $GITHUB_ENV
+            exit 1
+          fi
+
+      - name: "🔀 GRADE: Merge Evidence (15 pts)"
+        id: merges
+        continue-on-error: true
+        run: |
+          set -e
+          echo "🔍 Checking for merge evidence..."
+          
+          # Count merge commits or look for merged branch patterns
+          MERGE_COUNT=$(git log --all --oneline --merges | wc -l)
+          
+          # Also accept fast-forward merges (just check commit sequence on main)
+          MAIN_COMMITS=$(git rev-list --count HEAD)
+          
+          echo "📊 Merge commits found: $MERGE_COUNT"
+          echo "📊 Total commits on main: $MAIN_COMMITS"
+          
+          # If we have commits and they appear to be from merged work
+          if [ "$MAIN_COMMITS" -ge 15 ] || [ "$MERGE_COUNT" -ge 5 ]; then
+            echo "✅ PASS (15/15 pts): Evidence of proper merging workflow"
+            echo "MERGE_PASS=true" >> $GITHUB_ENV
+            echo "MERGE_POINTS=15" >> $GITHUB_ENV
+          else
+            echo "::warning::⚠️  PARTIAL (10/15 pts): Some merge evidence found"
+            echo "MERGE_PASS=partial" >> $GITHUB_ENV
+            echo "MERGE_POINTS=10" >> $GITHUB_ENV
+          fi
+
+      - name: "📁 GRADE: Required Files Exist (15 pts)"
+        id: files
+        continue-on-error: true
+        run: |
+          set -e
+          echo "🔍 Checking for answer files..."
+          
           MISSING=0
           
-          if [ -f README.md ]; then
-            echo "✅ README.md found"
+          if [ ! -d "answers" ]; then
+            echo "::error::❌ answers/ directory not found"
+            exit 1
+          fi
+          
+          for i in $(seq -w 1 15); do
+            FILE="answers/question-$i.md"
+            if [ -f "$FILE" ]; then
+              echo "✅ Found: $FILE"
+            else
+              echo "::warning::❌ Missing: $FILE"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          
+          echo ""
+          if [ "$MISSING" -eq 0 ]; then
+            echo "✅ PASS (15/15 pts): All 15 answer files present"
+            echo "FILES_PASS=true" >> $GITHUB_ENV
+            echo "FILES_POINTS=15" >> $GITHUB_ENV
           else
-            echo "::error::❌ GRADE FAIL: Missing README.md"
-            MISSING=1
+            FOUND=$((15 - MISSING))
+            PARTIAL=$((FOUND * 15 / 15))
+            echo "::error::❌ FAIL ($PARTIAL/15 pts): $MISSING files missing"
+            echo "FILES_PASS=false" >> $GITHUB_ENV
+            echo "FILES_POINTS=$PARTIAL" >> $GITHUB_ENV
+            exit 1
+          fi
+
+      - name: "📝 GRADE: Files Have Content (5 pts)"
+        id: content
+        continue-on-error: true
+        run: |
+          set -e
+          echo "🔍 Checking that files have content..."
+          
+          EMPTY=0
+          
+          if [ ! -d "answers" ]; then
+            echo "::error::❌ answers/ directory not found"
+            exit 1
           fi
           
-          if [ -f requirements.txt ]; then
-            echo "✅ requirements.txt found"
+          for i in $(seq -w 1 15); do
+            FILE="answers/question-$i.md"
+            if [ -f "$FILE" ]; then
+              WORDS=$(wc -w < "$FILE" | tr -d ' ')
+              if [ "$WORDS" -lt 10 ]; then
+                echo "::warning::⚠️  $FILE has only $WORDS words (need 10+)"
+                EMPTY=$((EMPTY + 1))
+              else
+                echo "✅ $FILE has $WORDS words"
+              fi
+            fi
+          done
+          
+          echo ""
+          if [ "$EMPTY" -eq 0 ]; then
+            echo "✅ PASS (5/5 pts): All files have adequate content"
+            echo "CONTENT_PASS=true" >> $GITHUB_ENV
+            echo "CONTENT_POINTS=5" >> $GITHUB_ENV
           else
-            echo "::error::❌ GRADE FAIL: Missing requirements.txt"
-            MISSING=1
+            echo "::warning::⚠️  PARTIAL (2/5 pts): $EMPTY files lack content"
+            echo "CONTENT_PASS=partial" >> $GITHUB_ENV
+            echo "CONTENT_POINTS=2" >> $GITHUB_ENV
           fi
+
+      - name: "🎯 FINAL GRADE CALCULATION"
+        if: always()
+        run: |
+          echo ""
+          echo "============================================"
+          echo "         📊 FINAL GRADE REPORT"
+          echo "============================================"
+          echo ""
           
-          if [ -d src ]; then
-            echo "✅ src/ directory found"
+          # Default values if tests didn't run
+          COMMIT_COUNT_POINTS=${COMMIT_COUNT_POINTS:-0}
+          COMMIT_MSG_POINTS=${COMMIT_MSG_POINTS:-0}
+          BRANCH_POINTS=${BRANCH_POINTS:-0}
+          MERGE_POINTS=${MERGE_POINTS:-0}
+          FILES_POINTS=${FILES_POINTS:-0}
+          CONTENT_POINTS=${CONTENT_POINTS:-0}
+          
+          echo "📝 Commit Count (min 15):        $COMMIT_COUNT_POINTS / 20 pts"
+          echo "📝 Commit Message Prefixes:      $COMMIT_MSG_POINTS / 25 pts"
+          echo "🌳 Feature Branches Created:     $BRANCH_POINTS / 20 pts"
+          echo "🔀 Merge Evidence:               $MERGE_POINTS / 15 pts"
+          echo "📁 All Files Present:            $FILES_POINTS / 15 pts"
+          echo "📝 Files Have Content:           $CONTENT_POINTS / 5 pts"
+          echo ""
+          echo "────────────────────────────────────────────"
+          
+          TOTAL=$((COMMIT_COUNT_POINTS + COMMIT_MSG_POINTS + BRANCH_POINTS + MERGE_POINTS + FILES_POINTS + CONTENT_POINTS))
+          
+          echo "🎯 TOTAL SCORE:                  $TOTAL / 100 pts"
+          echo "============================================"
+          echo ""
+          
+          if [ "$TOTAL" -ge 90 ]; then
+            echo "🏆 Grade: A (Excellent Git workflow!)"
+          elif [ "$TOTAL" -ge 80 ]; then
+            echo "🥈 Grade: B (Good work!)"
+          elif [ "$TOTAL" -ge 70 ]; then
+            echo "🥉 Grade: C (Passing)"
+          elif [ "$TOTAL" -ge 60 ]; then
+            echo "📚 Grade: D (Needs improvement)"
           else
-            echo "::error::❌ GRADE FAIL: Missing src/ directory"
-            MISSING=1
+            echo "❌ Grade: F (Does not meet requirements)"
           fi
           
-          if [ -d tests ]; then
-            echo "✅ tests/ directory found"
-          else
-            echo "::error::❌ GRADE FAIL: Missing tests/ directory"
-            MISSING=1
-          fi
-          
-          if [ $MISSING -eq 0 ]; then
-            echo "✅ GRADE PASS: All required structure elements present!"
-          fi
-          
-          exit $MISSING
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          # Ensure critical tools present even if students forget them:
-          pip install pytest pytest-cov pytest-pylint coverage pylint
-
-      - name: "✅ GRADE: Lint check (pylint --errors-only)"
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: |
-          echo "🔍 Running pylint on source code..."
-          pylint --errors-only src
-          echo "✅ No linting errors found!"
-
-      - name: "✅ GRADE: Pytest-pylint integration test"
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: |
-          echo "🔍 Running pytest with pylint integration..."
-          pytest --pylint src -v
-          echo "✅ Pytest-pylint integration passed!"
-
-      - name: "✅ GRADE: Unit tests execution"
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: |
-          echo "🔍 Running unit tests..."
-          pytest tests -v
-          echo "✅ All unit tests passed!"
-
-      - name: "✅ GRADE: Test coverage (must be 100%)"
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: |
-          echo "🔍 Checking test coverage..."
-          coverage run -m pytest tests
-          coverage report --fail-under=100
-          echo "✅ 100% test coverage achieved!"
-
-      - name: "📊 GRADE: Coverage report summary"
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: |
-          echo "📊 Final coverage report:"
-          coverage report
+          echo ""
+          echo "Full details available in the job logs above."
+          echo "============================================"
