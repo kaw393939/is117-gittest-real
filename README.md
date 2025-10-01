@@ -1,364 +1,572 @@
-# Git & Linux Command Guide - In-Class Test (30 min)# Linux Command Guide – In-Class Test (30 min)# TinyTools Calculator – In-Class Test (30 min)
+# Git & Linux Commands - In-Class Test (30 min)# Git & Linux Command Guide - In-Class Test (30 min)# Linux Command Guide – In-Class Test (30 min)# TinyTools Calculator – In-Class Test (30 min)
 
 
 
 ## Scenario
 
-Welcome to **TechStart Academy**! You've been hired as a Junior Developer, and your manager needs to verify you can follow professional Git workflow. Your task is to answer 15 technical questions about Git and Linux commands using **proper branch-based development workflow**.
 
-## Scenario## Scenario
 
-**Important:** This test evaluates your **Git workflow skills**, not memorization. You may use ChatGPT, Google, or any resources to answer questions. What matters is demonstrating professional version control practices.
+Welcome to **TechStart Academy**! You've been hired as a Junior Developer, and your manager needs to verify you can follow professional Git workflow. Your task is to answer **15 technical questions** about Git and Linux commands using **proper branch-based development workflow**.## Scenario
 
-You've just been hired as a **Junior Documentation Specialist** at **TechStart Academy**, a coding bootcamp that teaches beginners how to use Linux. Your manager needs you to create a **beginner-friendly Linux command reference guide** using professional Git workflow and Markdown formatting.You’ve joined **TinyTools, Inc.** Deliver a production-ready **Python Calculator** library with four operations:
+
+
+**Important:** This test evaluates your **Git workflow skills**, not memorization. You **may use ChatGPT, Google, or any resources** to answer questions. What matters is demonstrating professional version control practices.Welcome to **TechStart Academy**! You've been hired as a Junior Developer, and your manager needs to verify you can follow professional Git workflow. Your task is to answer 15 technical questions about Git and Linux commands using **proper branch-based development workflow**.
+
+
+
+---## Scenario## Scenario
+
+
+
+## Your Task**Important:** This test evaluates your **Git workflow skills**, not memorization. You may use ChatGPT, Google, or any resources to answer questions. What matters is demonstrating professional version control practices.
+
+
+
+Answer **15 questions** (5 about Git, 10 about Linux commands). Each question must be completed on its own feature branch and merged back to main.You've just been hired as a **Junior Documentation Specialist** at **TechStart Academy**, a coding bootcamp that teaches beginners how to use Linux. Your manager needs you to create a **beginner-friendly Linux command reference guide** using professional Git workflow and Markdown formatting.You’ve joined **TinyTools, Inc.** Deliver a production-ready **Python Calculator** library with four operations:
+
+
+
+### Required Workflow for EACH Question:---
+
+
+
+1. Create a feature branch (`question-01`, `question-02`, etc.)
+
+2. Create/edit the answer file in the `answers/` directory
+
+3. Stage and commit your changes with proper message prefix## Your Task
+
+4. Switch back to main branch
+
+5. Merge your feature branch into mainYour first assignment:- **add**, **subtract**, **multiply**, **divide**  
+
+6. Repeat for next question
+
+Answer **15 questions** about Git and Linux commands. Each question must be completed on its own branch and merged back to main.
+
+---
+
+- Create a well-organized guide covering **basic Linux commands** (file operations, navigation, text viewing, and system info)- **Divide by zero must raise `ZeroDivisionError`.**
+
+## Example Workflow
+
+### Required Workflow (FOR EACH QUESTION):
+
+Here's exactly how to complete Question 1:
+
+- Use **proper Markdown formatting** (headers, lists, code blocks, tables)
+
+```bash
+
+# Step 1: Create feature branch for question 11. **Create a feature branch** for the question
+
+git checkout -b question-01
+
+2. **Create/edit the answer file** - Follow **professional Git workflow** with atomic commitsYour team enforces professional workflow:  
+
+# Step 2: Create and edit your answer file
+
+# (Use your editor to write the answer in answers/question-01.md)3. **Commit with proper message prefix**
+
+
+
+# Step 3: Stage and commit4. **Switch back to main**- Build the documentation **incrementally** with clear commit history- **Brand-new repo**  
+
+git add answers/question-01.md
+
+git commit -m "docs: answer question 1 about git status"5. **Merge the branch**
+
+
+
+# Step 4: Switch back to main6. **Repeat for next question**- **Atomic commits** with required prefixes  
+
+git checkout main
+
+
+
+# Step 5: Merge your work
+
+git merge question-01---Your manager emphasizes:  - Pass **linting**  
+
+
+
+# Now repeat for question-02, question-03, etc...
+
+```
+
+## Example Workflow- "We need to see your work progress through Git commits"- All **tests** must pass  
+
+**Hint:** You'll do this pattern 15 times (once per question)!
+
+
+
+---
+
+```bash- "Each section should be added in its own commit"- **100% test coverage** required  
+
+## The 15 Questions
+
+# Question 1
+
+Answer each question in a separate markdown file: `answers/question-XX.md` (e.g., `answers/question-01.md`)
+
+git checkout -b question-01- "Use professional commit message prefixes so we can track documentation changes"
+
+### Git Questions (Questions 1-5)
+
+# Create and edit answers/question-01.md
+
+**Question 1:** What does `git status` do and when would you use it?
+
+git add answers/question-01.md---
+
+**Hint:** Think about when you want to see what files have changed...
+
+git commit -m "docs: answer question 1 about pwd command"
+
+---
+
+git checkout main---
+
+**Question 2:** Explain the difference between `git add` and `git commit`.
+
+git merge question-01
+
+**Hint:** One prepares changes (staging), the other saves them permanently...
+
+## Required Repo Layout
+
+---
+
+# Question 2
+
+**Question 3:** What is a branch in Git and why would you create one?
+
+git checkout -b question-02## Required Repo Layout```
+
+**Hint:** Think about working on features without breaking main code...
+
+# Create and edit answers/question-02.md
+
+---
+
+git add answers/question-02.md```
+
+**Question 4:** What does `git merge` do? Provide an example scenario.
+
+git commit -m "docs: answer question 2 about cd command"
+
+**Hint:** You're doing this in the test! What happens when you `git merge question-01`?
+
+git checkout mainREADME.mdREADME.md
+
+---
+
+git merge question-02
+
+**Question 5:** What is the difference between `git pull` and `git push`?
+
+docs/requirements.txt
+
+**Hint:** One downloads from GitHub, one uploads to GitHub...
+
+# Continue for all 15 questions...
+
+---
+
+```  navigation.mdsrc/
+
+### Linux File Navigation (Questions 6-10)
+
+
+
+**Question 6:** What does the `pwd` command do? Provide an example output.
+
+---  file-operations.mdtests/
+
+**Hint:** It shows your current location in the file system...
+
+
+
+---
+
+## The 15 Questions  text-commands.md
+
+**Question 7:** How do you change directories using the `cd` command? Show three different ways.
+
+
+
+**Hint:** Try `cd documents`, `cd ..`, and `cd ~`
+
+Answer each question in a separate markdown file: `answers/question-XX.md`  system-info.md````
 
 ---
 
 
 
-## Your Task
-
-Your first assignment:- **add**, **subtract**, **multiply**, **divide**  
-
-Answer **15 questions** about Git and Linux commands. Each question must be completed on its own branch and merged back to main.
-
-- Create a well-organized guide covering **basic Linux commands** (file operations, navigation, text viewing, and system info)- **Divide by zero must raise `ZeroDivisionError`.**
-
-### Required Workflow (FOR EACH QUESTION):
-
-- Use **proper Markdown formatting** (headers, lists, code blocks, tables)
-
-1. **Create a feature branch** for the question
-
-2. **Create/edit the answer file** - Follow **professional Git workflow** with atomic commitsYour team enforces professional workflow:  
-
-3. **Commit with proper message prefix**
-
-4. **Switch back to main**- Build the documentation **incrementally** with clear commit history- **Brand-new repo**  
-
-5. **Merge the branch**
-
-6. **Repeat for next question**- **Atomic commits** with required prefixes  
-
-
-
----Your manager emphasizes:  - Pass **linting**  
-
-
-
-## Example Workflow- "We need to see your work progress through Git commits"- All **tests** must pass  
-
-
-
-```bash- "Each section should be added in its own commit"- **100% test coverage** required  
-
-# Question 1
-
-git checkout -b question-01- "Use professional commit message prefixes so we can track documentation changes"
-
-# Create and edit answers/question-01.md
-
-git add answers/question-01.md---
-
-git commit -m "docs: answer question 1 about pwd command"
-
-git checkout main---
-
-git merge question-01
-
-## Required Repo Layout
-
-# Question 2
-
-git checkout -b question-02## Required Repo Layout```
-
-# Create and edit answers/question-02.md
-
-git add answers/question-02.md```
-
-git commit -m "docs: answer question 2 about cd command"
-
-git checkout mainREADME.mdREADME.md
-
-git merge question-02
-
-docs/requirements.txt
-
-# Continue for all 15 questions...
-
-```  navigation.mdsrc/
-
-
-
----  file-operations.mdtests/
-
-
-
-## The 15 Questions  text-commands.md
-
-
-
-Answer each question in a separate markdown file: `answers/question-XX.md`  system-info.md````
-
-
+**Question 8:** What does `ls -la` show you that `ls` alone does not?
 
 ### Git Questions (Questions 1-5)```
 
+**Hint:** The `-l` shows details, the `-a` shows hidden files...
 
+
+
+---
 
 **Question 1:** What does `git status` do and when would you use it?---
 
+**Question 9:** How do you create a new directory? Provide the command and an example.
 
+
+
+**Hint:** `mkdir` makes directories...
 
 **Question 2:** Explain the difference between `git add` and `git commit`.---
 
+---
 
+
+
+**Question 10:** What's the difference between absolute and relative paths? Give examples.
 
 **Question 3:** What is a branch in Git and why would you create one?## Commit Rules
 
+**Hint:** Absolute starts with `/`, relative starts from where you are...
 
+
+
+---
 
 **Question 4:** What does `git merge` do? Provide an example scenario.## Commit Rules- Every commit message **must** start with one of:  
 
+### Linux File Operations (Questions 11-15)
 
+
+
+**Question 11:** How do you create an empty file in Linux? Provide the command.
 
 **Question 5:** What is the difference between `git pull` and `git push`?- Every commit message **must** start with one of:    - `chore:` — setup/config/docs  
 
+**Hint:** `touch` creates empty files...
 
+
+
+---
 
 ### Linux File Navigation (Questions 6-10)  - `docs:` — adding or updating documentation content  - `feature:` — new functionality **and its tests**  
 
+**Question 12:** Explain the difference between `cp` and `mv` commands.
 
+
+
+**Hint:** One copies (original stays), one moves (original is gone)...
 
 **Question 6:** What does the `pwd` command do? Provide an example output.  - `chore:` — setup, configuration, or project structure  - `fix:` — bug fix or correcting a test  
 
-
-
-**Question 7:** How do you change directories using the `cd` command? Show three different ways.  - `fix:` — correcting errors or improving existing content
-
-
-
-**Question 8:** What does `ls -la` show you that `ls` alone does not?- **Atomic history**:
-
-
-
-**Question 9:** How do you create a new directory? Provide the command and an example.- **Atomic commits**:  - Each calculator function (**add, subtract, multiply, divide**) must be delivered in **its own commit**, with the tests **and** the implementation together.  
-
-
-
-**Question 10:** What's the difference between absolute and relative paths? Give examples.  - Each documentation file should be added in **its own commit**  - Do **not** put multiple functions in one commit.  
-
-
-
-### Linux File Operations (Questions 11-15)  - Each major content addition gets **its own commit**  - Do **not** split one function across multiple commits.
-
-
-
-**Question 11:** How do you create an empty file in Linux? Provide the command.  - Do **not** put multiple unrelated changes in one commit
-
-
-
-**Question 12:** Explain the difference between `cp` and `mv` commands.  - Do **not** split one logical addition across multiple commits- **Minimum 8 commits** required (more is fine; do not squash).
+---
 
 
 
 **Question 13:** Why is the `rm -rf` command dangerous? How can you be safer?
 
+**Question 7:** How do you change directories using the `cd` command? Show three different ways.  - `fix:` — correcting errors or improving existing content
 
+**Hint:** `-r` = recursive (everything), `-f` = force (no confirmation), it's permanent!
+
+
+
+---
+
+**Question 8:** What does `ls -la` show you that `ls` alone does not?- **Atomic history**:
+
+**Question 14:** What does the `cat` command do? Provide an example use case.
+
+
+
+**Hint:** It displays entire file contents in the terminal...
+
+**Question 9:** How do you create a new directory? Provide the command and an example.- **Atomic commits**:  - Each calculator function (**add, subtract, multiply, divide**) must be delivered in **its own commit**, with the tests **and** the implementation together.  
+
+---
+
+
+
+**Question 15:** How would you view the last 20 lines of a log file?
+
+**Question 10:** What's the difference between absolute and relative paths? Give examples.  - Each documentation file should be added in **its own commit**  - Do **not** put multiple functions in one commit.  
+
+**Hint:** `tail -n 20 filename` or `tail -20 filename`
+
+
+
+---
+
+### Linux File Operations (Questions 11-15)  - Each major content addition gets **its own commit**  - Do **not** split one function across multiple commits.
+
+## Commit Message Rules
+
+
+
+Every commit message **must** start with one of these prefixes:
+
+**Question 11:** How do you create an empty file in Linux? Provide the command.  - Do **not** put multiple unrelated changes in one commit
+
+- `docs:` — Adding or updating documentation/answers
+
+- `chore:` — Setup, configuration, or structural changes  
+
+- `fix:` — Correcting an error in your answer
+
+**Question 12:** Explain the difference between `cp` and `mv` commands.  - Do **not** split one logical addition across multiple commits- **Minimum 8 commits** required (more is fine; do not squash).
+
+### Good Examples:
+
+```
+
+docs: answer question 1 about git status
+
+docs: answer question 2 about git add vs commit**Question 13:** Why is the `rm -rf` command dangerous? How can you be safer?
+
+fix: correct explanation in question 4
+
+chore: create answers directory
+
+```
 
 **Question 14:** What does the `cat` command do? Provide an example use case.- **Minimum 8 commits** required (more is fine; do not squash)### Example Commit Timeline
 
+### Bad Examples (will lose points):
 
+```
 
-**Question 15:** How would you view the last 20 lines of a log file?1. `chore: initialize repo with README and requirements`
+Question 1
 
+answered question 2**Question 15:** How would you view the last 20 lines of a log file?1. `chore: initialize repo with README and requirements`
 
+update
+
+fixed stuff
+
+```
 
 ---### Example Commit Timeline2. `chore: add project skeleton (src, tests) and setup notes`
 
-
-
-## Commit Message Rules1. `chore: initialize repository with README template`3. `chore: document how to run lint/tests in README`
-
-
-
-Every commit message **must** start with one of these prefixes:2. `chore: create docs directory structure`4. `feature: implement add() with unit tests`
-
-
-
-- `docs:` — Adding or updating documentation/answers3. `docs: add navigation commands guide`5. `feature: implement subtract() with unit tests`
-
-- `chore:` — Setup, configuration, or structural changes
-
-- `fix:` — Correcting an error in your answer4. `docs: add file operations guide`6. `feature: implement multiply() with unit tests`
-
-
-
-**Examples:**5. `docs: add text viewing commands guide`7. `feature: implement divide() with unit tests including divide-by-zero`
-
-```
-
-docs: answer question 1 about pwd command6. `docs: add system information commands guide`8. `chore: add coverage command and enforce 100% in README`
-
-docs: answer question 2 about cd command
-
-fix: correct git merge explanation in question 47. `docs: add table of contents to README`9. *(if needed)* `fix: correct edge case in subtract() test`
-
-```
-
-8. `docs: add examples and tips section`10. *(if needed)* `fix: address pylint error in calculator module`
-
 ---
 
-9. *(if needed)* `fix: correct mkdir command syntax in file-operations.md`
+
 
 ## Required Repository Structure
 
-10. *(if needed)* `docs: add additional examples to navigation.md`---
+## Commit Message Rules1. `chore: initialize repository with README template`3. `chore: document how to run lint/tests in README`
+
+By the end, your repo should look like this:
+
+
 
 ```
 
-README.md
+README.mdEvery commit message **must** start with one of these prefixes:2. `chore: create docs directory structure`4. `feature: implement add() with unit tests`
 
 answers/
 
-  question-01.md---## Local Commands (before pushing)
+  question-01.md
 
   question-02.md
 
-  question-03.md```bash
+  question-03.md- `docs:` — Adding or updating documentation/answers3. `docs: add navigation commands guide`5. `feature: implement subtract() with unit tests`
 
   question-04.md
 
-  question-05.md## Content Requirements# Install dependencies
+  question-05.md- `chore:` — Setup, configuration, or structural changes
 
   question-06.md
 
-  question-07.mdpip install -r requirements.txt
+  question-07.md- `fix:` — Correcting an error in your answer4. `docs: add file operations guide`6. `feature: implement multiply() with unit tests`
 
   question-08.md
 
-  question-09.md### Each Guide File Must Include:
+  question-09.md
 
   question-10.md
 
-  question-11.md1. **Header** (level 1 or 2)# Lint (must be clean)
+  question-11.md**Examples:**5. `docs: add text viewing commands guide`7. `feature: implement divide() with unit tests including divide-by-zero`
 
   question-12.md
 
-  question-13.md2. **Command list** with descriptionspylint --errors-only src
+  question-13.md```
 
   question-14.md
 
-  question-15.md3. **Code blocks** showing command syntax
+  question-15.mddocs: answer question 1 about pwd command6. `docs: add system information commands guide`8. `chore: add coverage command and enforce 100% in README`
 
 ```
 
-4. **Examples** of actual usage# Run tests
+docs: answer question 2 about cd command
 
 ---
 
-5. **Tips or warnings** (using blockquotes or emphasis)PYTHONPATH=src pytest tests -v
+fix: correct git merge explanation in question 47. `docs: add table of contents to README`9. *(if needed)* `fix: correct edge case in subtract() test`
 
 ## Grading Rubric (100 points)
 
-PYTHONPATH=src pytest --pylint src -v
+```
 
-This test is **auto-graded by GitHub Actions**. Your score is based entirely on Git workflow:
+This test is **auto-graded by GitHub Actions**. Your grade is based entirely on Git workflow, not answer quality!
 
-### Markdown Elements You Must Use:
+8. `docs: add examples and tips section`10. *(if needed)* `fix: address pylint error in calculator module`
 
 | # | Requirement | Points | How It's Checked |
 
-|---|-------------|--------|------------------|- Headers (`#`, `##`, `###`)# Coverage (must be 100%)
+|---|-------------|--------|------------------|---
 
 | 1 | **Minimum 15 commits** | 20 pts | Git history shows ≥15 commits |
 
-| 2 | **Proper commit prefixes** | 25 pts | All commits use `docs:`, `chore:`, or `fix:` |- Lists (bulleted or numbered)PYTHONPATH=src coverage run -m pytest tests
+| 2 | **Proper commit prefixes** | 25 pts | All commits start with `docs:`, `chore:`, or `fix:` |9. *(if needed)* `fix: correct mkdir command syntax in file-operations.md`
 
-| 3 | **15 branches created** | 20 pts | Git history shows 15 feature branches |
+| 3 | **15 branches created** | 20 pts | Git reflog/history shows 15 question branches |
 
-| 4 | **15 successful merges** | 15 pts | All branches merged to main |- Code blocks with triple backtickscoverage report --fail-under=100
+| 4 | **Merge evidence** | 15 pts | Branches were merged back to main |## Required Repository Structure
 
-| 5 | **All 15 files exist** | 15 pts | All question-XX.md files present |
+| 5 | **All 15 files exist** | 15 pts | All question-XX.md files are present |
 
-| 6 | **Files have content** | 5 pts | Each file has at least 10 words |- Inline code with single backticks````
-
-
-
-**Total: 100 points**- **Bold** or *italic* text for emphasis
+| 6 | **Files have content** | 5 pts | Each file has at least 10 words |10. *(if needed)* `docs: add additional examples to navigation.md`---
 
 
 
----- Tables (at least one)---
+**Total: 100 points**```
 
 
 
-## Getting Started- Blockquotes (optional but recommended)
+**Note:** We don't grade answer accuracy! Use ChatGPT, Google, or any resources you want. We're grading your Git skills!README.md
 
 
 
-### Step 1: Clone and Setup## How Grading Works
+---answers/
 
-```bash
 
-git clone <your-repo-url>---
+
+## Getting Started  question-01.md---## Local Commands (before pushing)
+
+
+
+### Step 1: Clone and Initial Setup  question-02.md
+
+
+
+```bash  question-03.md```bash
+
+# Clone your repository
+
+git clone <your-repo-url>  question-04.md
 
 cd <repo-name>
 
-mkdir answersYour repository is graded entirely by the **GitHub Actions workflow** in `.github/workflows/ci.yml`.
+  question-05.md## Content Requirements# Install dependencies
+
+# Create the answers directory
+
+mkdir answers  question-06.md
 
 git add answers/
 
-git commit -m "chore: create answers directory"## Commands to DocumentIf any step fails, you lose points for that category.
+git commit -m "chore: create answers directory"  question-07.mdpip install -r requirements.txt
 
 git push
 
-```
+```  question-08.md
 
 
 
-### Step 2: Answer Questions Using Branch Workflow### Navigation Commands (navigation.md)### Rubric (100 pts total)
-
-Follow the example workflow above for each question.
-
-- `pwd` - print working directory
-
-### Step 3: Verify Your Work
-
-```bash- `cd` - change directory| # | CI Job / Step         | Requirement                                                   | Points | Pass                                    | Fail                 |
-
-# Check commit count
-
-git log --oneline | wc -l- `ls` - list directory contents| - | --------------------- | ------------------------------------------------------------- | -----: | --------------------------------------- | -------------------- |
+### Step 2: Start Answering Questions  question-09.md### Each Guide File Must Include:
 
 
 
-# Check branches created| 1 | **Commit Policy**     | ≥ 8 commits                                                   |     20 | CI shows “Commit count requirement met” | Fewer than 8 commits |
+```bash  question-10.md
+
+# Question 1
+
+git checkout -b question-01  question-11.md1. **Header** (level 1 or 2)# Lint (must be clean)
+
+# Create/edit answers/question-01.md with your answer
+
+git add answers/question-01.md  question-12.md
+
+git commit -m "docs: answer question 1 about git status"
+
+git checkout main  question-13.md2. **Command list** with descriptionspylint --errors-only src
+
+git merge question-01
+
+  question-14.md
+
+# Question 2
+
+git checkout -b question-02  question-15.md3. **Code blocks** showing command syntax
+
+# Create/edit answers/question-02.md with your answer
+
+git add answers/question-02.md```
+
+git commit -m "docs: answer question 2 about git add vs commit"
+
+git checkout main4. **Examples** of actual usage# Run tests
+
+git merge question-02
+
+---
+
+# Continue this pattern for all 15 questions...
+
+```5. **Tips or warnings** (using blockquotes or emphasis)PYTHONPATH=src pytest tests -v
+
+
+
+### Step 3: Verify Your Work## Grading Rubric (100 points)
+
+
+
+```bashPYTHONPATH=src pytest --pylint src -v
+
+# Check commit count (should be 15+)
+
+git log --oneline | wc -lThis test is **auto-graded by GitHub Actions**. Your score is based entirely on Git workflow:
+
+
+
+# Check all branches were created### Markdown Elements You Must Use:
 
 git branch -a
 
-### File Operations (file-operations.md)| 2 | **Commit Policy**     | All commit messages start with `chore:` / `feature:` / `fix:` |     20 | All messages valid                      | Any message invalid  |
+| # | Requirement | Points | How It's Checked |
 
 # Check all files exist
 
-ls answers/- `mkdir` - make directory| 3 | **Project Structure** | `README.md`, `requirements.txt`, `src/`, `tests/` present     |     10 | All present                             | Any missing          |
+ls answers/|---|-------------|--------|------------------|- Headers (`#`, `##`, `###`)# Coverage (must be 100%)
+
+
+
+# Should show all 15 question files| 1 | **Minimum 15 commits** | 20 pts | Git history shows ≥15 commits |
 
 ```
 
-- `touch` - create empty file| 4 | **Lint Check**        | `pylint --errors-only src` clean                              |     15 | No errors                               | Any error            |
+| 2 | **Proper commit prefixes** | 25 pts | All commits use `docs:`, `chore:`, or `fix:` |- Lists (bulleted or numbered)PYTHONPATH=src coverage run -m pytest tests
 
-### Step 4: Push Everything
+### Step 4: Final Push
 
-```bash- `cp` - copy files/directories| 5 | **Pytest-Pylint**     | `pytest --pylint src -v` passes                               |      5 | Pass                                    | Fail                 |
+| 3 | **15 branches created** | 20 pts | Git history shows 15 feature branches |
+
+```bash
+
+# Push everything to GitHub| 4 | **15 successful merges** | 15 pts | All branches merged to main |- Code blocks with triple backtickscoverage report --fail-under=100
 
 git push origin main
 
-git push --all  # Push all branches- `mv` - move or rename files| 6 | **Unit Tests**        | `pytest tests -v` passes                                      |     15 | All tests pass                          | Any fail             |
+git push --all  # Pushes all branches too| 5 | **All 15 files exist** | 15 pts | All question-XX.md files present |
 
 ```
 
-- `rm` - remove files/directories| 7 | **Coverage**          | `coverage report --fail-under=100` shows 100%                 |     15 | Exactly 100%                            | < 100%               |
+| 6 | **Files have content** | 5 pts | Each file has at least 10 words |- Inline code with single backticks````
 
 ---
 
@@ -366,63 +574,281 @@ git push --all  # Push all branches- `mv` - move or rename files| 6 | **Unit Tes
 
 ## Tips for Success
 
-### Text Commands (text-commands.md)**Total = 100 points**
+**Total: 100 points**- **Bold** or *italic* text for emphasis
 
-⏰ **Time Management**
+### ⏰ Time Management
 
-- ~2 minutes per question- `cat` - display file contents
+- **2 minutes per question** is your target pace
 
-- Create branch → answer → commit → merge
+- Don't spend more than 3 minutes on any single question
 
-- Don't overthink answers - you can use any resources- `less` - view file with pagination---
+- Simple answers are fine - this isn't graded on quality!---- Tables (at least one)---
+
+- Set a timer and stick to it
 
 
 
-🔄 **Git Workflow**- `head` - show first lines of file
+### 🔄 Git Workflow
 
-- Keep commits atomic (one per question)
+- Create branch → edit file → commit → merge - **keep this rhythm**## Getting Started- Blockquotes (optional but recommended)
 
-- Always merge back to main after each question- `tail` - show last lines of file## Submission
+- Don't forget to go back to `main` before merging!
+
+- If you mess up, it's okay - just keep going
+
+- Push your work every 5-10 minutes so you don't lose it
+
+### Step 1: Clone and Setup## How Grading Works
+
+### ✅ Answer Quality (Don't Stress!)
+
+- **2-4 sentences is plenty** for most questions```bash
+
+- Include a command example when relevant
+
+- Use ChatGPT or Google - we don't care!git clone <your-repo-url>---
+
+- Focus on Git workflow, not perfect answers
+
+cd <repo-name>
+
+### 🚨 Common Mistakes to Avoid
+
+- ❌ Forgetting to create feature branches (work directly on main)mkdir answersYour repository is graded entirely by the **GitHub Actions workflow** in `.github/workflows/ci.yml`.
+
+- ❌ Wrong commit message prefixes (no prefix or wrong format)
+
+- ❌ Not merging branches back to maingit add answers/
+
+- ❌ Creating all files at once instead of one per commit
+
+- ❌ Spending too much time on answer qualitygit commit -m "chore: create answers directory"## Commands to DocumentIf any step fails, you lose points for that category.
+
+
+
+---git push
+
+
+
+## Quick Command Reference```
+
+
+
+### Git Branch Workflow
+
+```bash
+
+git checkout -b question-XX      # Create and switch to feature branch### Step 2: Answer Questions Using Branch Workflow### Navigation Commands (navigation.md)### Rubric (100 pts total)
+
+git add answers/question-XX.md   # Stage your answer file
+
+git commit -m "docs: ..."        # Commit with proper prefixFollow the example workflow above for each question.
+
+git checkout main                # Go back to main
+
+git merge question-XX            # Merge your branch- `pwd` - print working directory
+
+```
+
+### Step 3: Verify Your Work
+
+### Checking Your Progress
+
+```bash```bash- `cd` - change directory| # | CI Job / Step         | Requirement                                                   | Points | Pass                                    | Fail                 |
+
+git status                       # See current state
+
+git log --oneline               # View commit history  # Check commit count
+
+git branch                       # List local branches
+
+ls answers/                      # See answer files createdgit log --oneline | wc -l- `ls` - list directory contents| - | --------------------- | ------------------------------------------------------------- | -----: | --------------------------------------- | -------------------- |
+
+```
+
+
+
+### If You Get Stuck
+
+```bash# Check branches created| 1 | **Commit Policy**     | ≥ 8 commits                                                   |     20 | CI shows “Commit count requirement met” | Fewer than 8 commits |
+
+git status                       # Where am I? What's changed?
+
+git branch                       # What branch am I on?git branch -a
+
+pwd                             # What directory am I in?
+
+```### File Operations (file-operations.md)| 2 | **Commit Policy**     | All commit messages start with `chore:` / `feature:` / `fix:` |     20 | All messages valid                      | Any message invalid  |
+
+
+
+---# Check all files exist
+
+
+
+## Example Answer Formatls answers/- `mkdir` - make directory| 3 | **Project Structure** | `README.md`, `requirements.txt`, `src/`, `tests/` present     |     10 | All present                             | Any missing          |
+
+
+
+Your answer files should be simple markdown. Here's an example:```
+
+
+
+**File: `answers/question-01.md`**- `touch` - create empty file| 4 | **Lint Check**        | `pylint --errors-only src` clean                              |     15 | No errors                               | Any error            |
+
+
+
+```markdown### Step 4: Push Everything
+
+# Question 1: What does git status do?
+
+```bash- `cp` - copy files/directories| 5 | **Pytest-Pylint**     | `pytest --pylint src -v` passes                               |      5 | Pass                                    | Fail                 |
+
+## Answer
+
+git push origin main
+
+`git status` shows the current state of your working directory and staging area. 
+
+It tells you which files are modified, staged, or untracked.git push --all  # Push all branches- `mv` - move or rename files| 6 | **Unit Tests**        | `pytest tests -v` passes                                      |     15 | All tests pass                          | Any fail             |
+
+
+
+You use it before committing to see what changes will be included.```
+
+
+
+## Example- `rm` - remove files/directories| 7 | **Coverage**          | `coverage report --fail-under=100` shows 100%                 |     15 | Exactly 100%                            | < 100%               |
+
+
+
+\`\`\`bash---
+
+$ git status
+
+On branch main
+
+Changes not staged for commit:
+
+  modified:   README.md## Tips for Success
+
+\`\`\`
+
+```### Text Commands (text-commands.md)**Total = 100 points**
+
+
+
+That's it! Simple and quick. Don't overthink it!⏰ **Time Management**
+
+
+
+---- ~2 minutes per question- `cat` - display file contents
+
+
+
+## Submission- Create branch → answer → commit → merge
+
+
+
+1. **Push all your commits to GitHub:**- Don't overthink answers - you can use any resources- `less` - view file with pagination---
+
+   ```bash
+
+   git push origin main
+
+   git push --all
+
+   ```🔄 **Git Workflow**- `head` - show first lines of file
+
+
+
+2. **Verify on GitHub** that you can see:- Keep commits atomic (one per question)
+
+   - Your commit history (15+ commits)
+
+   - All answer files in the `answers/` folder- Always merge back to main after each question- `tail` - show last lines of file## Submission
+
+   - Proper commit message prefixes
 
 - Push frequently to avoid losing work
 
+3. **Your last commit must be before the 30-minute deadline**
 
+
+
+4. **The auto-grader runs automatically** and will show your score in the GitHub Actions tab
 
 ✅ **Answer Quality**
 
+---
+
 - Answers don't need to be long (2-4 sentences is fine)### System Info (system-info.md)* Push to GitHub/GitLab and share the repo URL **OR** upload a zip including `.git` history.
+
+## FAQs
 
 - Include command examples when relevant
 
-- Use ChatGPT or Google - this is about Git, not memorization- `whoami` - current username* Your **last commit** must be before the 30-minute deadline.
+**Q: Can I really use ChatGPT or Google?**  
+
+A: Yes! This test is about Git workflow, not memorizing commands.- Use ChatGPT or Google - this is about Git, not memorization- `whoami` - current username* Your **last commit** must be before the 30-minute deadline.
 
 
+
+**Q: How detailed should my answers be?**  
+
+A: 2-4 sentences with an example is plenty. We're not grading content!
 
 🚨 **Common Mistakes to Avoid**- `hostname` - computer name
 
-- Forgetting to create a branch- `date` - current date/time
+**Q: What if I make a mistake in my answer?**  
 
-- Working on main instead of feature branches- `uname` - system information
+A: You can fix it later with a `fix:` commit if you have time, but don't worry too much.- Forgetting to create a branch- `date` - current date/time
+
+
+
+**Q: Do I need to push after every commit?**  - Working on main instead of feature branches- `uname` - system information
+
+A: No, but push every 5-10 minutes so you don't lose work if something happens.
 
 - Missing the commit message prefix
 
-- Not merging back to main---
+**Q: What if I can't finish all 15 questions?**  
+
+A: Do as many as you can! Partial credit is given. But 15 questions in 30 minutes is definitely doable if you stay focused on Git workflow, not answer perfection.- Not merging back to main---
 
 
+
+**Q: Can I work on multiple questions before merging?**  
+
+A: No - merge each branch back to main before starting the next one. That's the workflow we're testing!
 
 ---## How Grading Works
 
+---
 
+
+
+## Remember
 
 ## SubmissionYour repository is graded entirely by the **GitHub Actions workflow** in `.github/workflows/ci.yml`.
 
-If any step fails, you lose points for that category.
+This is a **Git workflow proficiency test**. Your score depends on:
 
-1. **Push all commits to GitHub**
+- ✅ Following the branch-based workflow correctlyIf any step fails, you lose points for that category.
+
+- ✅ Using proper commit message prefixes
+
+- ✅ Creating all required files1. **Push all commits to GitHub**
+
+- ❌ NOT on how perfect your answers are
 
    ```bash### Rubric (100 pts total)
 
+**Stay calm, follow the workflow, and you'll do great!** 🚀
+
    git push origin main
+
+Good luck!
 
    git push --all| # | Category              | Requirement                                                | Points | Pass                                    | Fail                 |
 
