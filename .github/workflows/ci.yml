@@ -1,0 +1,87 @@
+name: Auto-Grade Git Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Get full history for commit analysis
+    
+    - name: Check Commit Count
+      run: |
+        COMMIT_COUNT=$(git log --oneline | wc -l)
+        echo "Total commits: $COMMIT_COUNT"
+        if [ $COMMIT_COUNT -lt 15 ]; then
+          echo "❌ FAIL: Need at least 15 commits (found $COMMIT_COUNT)"
+          exit 1
+        fi
+        echo "✅ PASS: Commit count ($COMMIT_COUNT >= 15)"
+    
+    - name: Check Commit Messages
+      run: |
+        INVALID=$(git log --pretty=format:"%s" | grep -v -E "^(docs:|chore:|fix:)" || true)
+        if [ ! -z "$INVALID" ]; then
+          echo "❌ FAIL: Some commits don't start with docs:, chore:, or fix:"
+          echo "$INVALID"
+          exit 1
+        fi
+        echo "✅ PASS: All commits have proper prefixes"
+    
+    - name: Check Branch Count
+      run: |
+        BRANCH_COUNT=$(git branch -a | grep -E "question-[0-9]+" | wc -l)
+        echo "Question branches found: $BRANCH_COUNT"
+        if [ $BRANCH_COUNT -lt 15 ]; then
+          echo "❌ FAIL: Need 15 question branches (found $BRANCH_COUNT)"
+          exit 1
+        fi
+        echo "✅ PASS: All 15 branches created"
+    
+    - name: Check Merge Commits
+      run: |
+        MERGE_COUNT=$(git log --merges --oneline | wc -l)
+        echo "Merge commits: $MERGE_COUNT"
+        if [ $MERGE_COUNT -lt 15 ]; then
+          echo "⚠️  WARNING: Expected 15 merge commits (found $MERGE_COUNT)"
+          echo "This is OK if you used fast-forward merges"
+        else
+          echo "✅ PASS: All merges detected"
+        fi
+    
+    - name: Check Answer Files
+      run: |
+        for i in $(seq -f "%02g" 1 15); do
+          FILE="answers/question-$i.md"
+          if [ ! -f "$FILE" ]; then
+            echo "❌ FAIL: Missing $FILE"
+            exit 1
+          fi
+          WORDS=$(wc -w < "$FILE")
+          if [ $WORDS -lt 10 ]; then
+            echo "❌ FAIL: $FILE too short (${WORDS} words, need 10+)"
+            exit 1
+          fi
+          echo "✅ $FILE exists ($WORDS words)"
+        done
+        echo "✅ PASS: All 15 answer files present with content"
+    
+    - name: Grade Summary
+      run: |
+        echo "================================"
+        echo "🎓 AUTO-GRADE COMPLETE"
+        echo "================================"
+        echo "✅ Commits: PASS"
+        echo "✅ Prefixes: PASS"
+        echo "✅ Branches: PASS"
+        echo "✅ Files: PASS"
+        echo "================================"
+        echo "Grade: 100/100"
+        echo "================================"
