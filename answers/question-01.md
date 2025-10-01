@@ -1,2 +1,3 @@
 # What does git status do?
 
+The git status command is really helpful because it shows me the current state of my repository. When I run it, I can see what branch I’m on, whether my local branch is ahead or behind the remote one, and what files have been changed. It also points out which files are staged and ready to commit, which ones have been modified but not staged, and which new files aren’t being tracked yet. I like that it even gives hints about what I should do next, like using git add to stage a file or git restore to undo changes. As a student still learning Git, I find git status to be a quick way to stay organized and understand what’s happening before I make commits.
