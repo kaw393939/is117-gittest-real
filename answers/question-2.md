@@ -1,0 +1,1 @@
+# git add vs git commit – git add stages changes; git commit saves them permanently to the repository.
