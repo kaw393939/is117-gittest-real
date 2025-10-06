@@ -1,0 +1,1 @@
+# View last 20 lines – tail -n 20 filename
