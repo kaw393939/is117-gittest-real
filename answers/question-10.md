@@ -1,0 +1,1 @@
+# Absolute starts from root (/home/user/...); relative starts from current folder (../folder).
