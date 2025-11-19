@@ -1,0 +1,119 @@
+:root{
+  --bg: #F7F5F2; /* warm off-white */
+  --text: #333333; /* warm gray body */
+  --heading: #222222; /* warmer dark gray for headings */
+  --sage: #7A8B8A; /* gentle sage */
+  --soft-green: #B5C9A3; /* optional illustration accent */
+  --accent: #2C5F8D; /* muted accent available */
+  --nav-bg: #E3D7C6; /* navbar background */
+  --hero-gradient: linear-gradient(135deg,#C7DCC0,#E8E2CF);
+  --card-bg: #FFF9F0; /* card background per request */
+  --card-border: #E1D3C2; /* card border */
+  --border: #E5E2DA; /* warm neutral border */
+  --max-width: 960px;
+}
+
+/* Base layout and typography */
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif; /* humanist sans for body */
+  font-size:20px; /* required body size */
+  line-height:1.75; /* comfortable reading */
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Central single-column container */
+.container{
+  max-width:var(--max-width);
+  margin:0 auto; /* center the single column */
+  padding:64px 32px; /* central padding */
+}
+
+/* Header */
+.site-header{
+  border-bottom:1px solid var(--border);
+  background:var(--nav-bg);
+}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+.logo{color:var(--heading);text-decoration:none;font-weight:600;font-size:1.05rem}
+
+.nav{list-style:none;margin:0;padding:0;display:flex;gap:0.5rem;align-items:center}
+.nav-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px; /* touch-friendly */
+  padding:0 1rem;border-radius:8px;color:#ffffff;
+  text-decoration:none;font-weight:600;background:var(--accent);border:0;font-family:inherit;transition:background .15s ease
+}
+.nav-btn:focus,.nav-btn:hover{background:#234B70;outline:3px solid rgba(35,75,112,0.09)}
+
+/* Editorial headings (serif) */
+h1,h2,h3{font-family: Georgia, 'Times New Roman', serif;letter-spacing:0.2px;color:var(--heading);margin-top:0;margin-bottom:0.35em}
+h1{font-size:64px;font-weight:500;line-height:1.03}
+h2{font-size:40px;font-weight:500}
+h3{font-size:28px;font-weight:500}
+
+.hero{padding-top:120px;padding-bottom:120px}
+.hero .card{background:transparent;box-shadow:none;padding:0}
+.hero h1{margin-bottom:0.4rem}
+.lede{font-size:1.15rem;color:var(--sage);margin-top:0.5rem}
+
+/* Section rhythm and wide feel */
+.section{width:100%;padding:80px 10vw}
+.section p{margin-top:1.5em;margin-bottom:0}
+
+/* Cards & blocks */
+.card{background:var(--card-bg);padding:1.5rem;border-radius:8px;box-shadow:0 6px 12px rgba(0,0,0,0.02);border:1px solid var(--card-border)}
+.small-card{padding:1rem}
+
+/* Gallery and imagery placeholders */
+.hero-visual{height:220px;border-radius:8px;background:var(--hero-gradient);margin-top:1.25rem}
+.image-placeholder{height:140px;border-radius:8px;background:linear-gradient(180deg,var(--soft-green),#EDE8DF);margin-bottom:0.75rem}
+
+/* Designers list */
+.designers-list{display:flex;flex-direction:column;gap:1.25rem}
+.person{display:flex;gap:1rem;align-items:flex-start}
+.avatar{width:88px;height:88px;border-radius:8px;background:linear-gradient(180deg,#EFE8E0,#F7F3F1)}
+
+/* Timeline entries */
+.timeline .entry{margin-bottom:1.75rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border)}
+
+/* Pull quote (Medium-like) */
+.pull-quote{font-family: Georgia, 'Times New Roman', serif;font-size:28px;line-height:1.28;color:var(--heading);margin:1.25rem 0;padding:0.5rem 1rem;border-left:6px solid var(--soft-green);background:transparent}
+
+/* Blockquote styling */
+blockquote{font-family: Georgia, 'Times New Roman', serif;font-style:italic;color:var(--heading);border-left:4px solid var(--border);padding:0.75rem 1rem;margin:1.5em 0;background:transparent}
+
+/* Links */
+a{color:var(--sage);text-decoration:none;border-bottom:1px solid rgba(122,139,138,0.15)}
+a:hover{border-bottom-color:rgba(122,139,138,0.35);text-decoration:none}
+
+/* Buttons */
+.accent-btn{display:inline-block;background:var(--accent);color:#ffffff;padding:0.8rem 1rem;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 2px 4px rgba(0,0,0,0.05);transition:background .18s ease}
+.accent-btn:hover{background:#234B70}
+.accent-btn:focus{outline:3px solid rgba(0,0,0,0.06)}
+
+/* Footer */
+.site-footer{margin-top:4.5rem;padding:2rem 0;color:var(--sage)}
+.site-footer a{color:var(--heading)}
+
+/* Responsive adjustments */
+@media (max-width:900px){
+  .container{padding:32px 24px}
+  h1{font-size:44px}
+  h2{font-size:32px}
+}
+
+@media (max-width:560px){
+  .container{padding:20px 18px}
+  body{font-size:19px}
+  .logo{font-size:1rem}
+  .hero{padding-top:64px;padding-bottom:64px}
+}
+
+/* Utility */
+.cta{margin-top:1.25rem}
+.accent{color:var(--accent)}
