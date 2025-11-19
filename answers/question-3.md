@@ -1,0 +1,1 @@
+# Git branch – A separate line of development within the same repo.

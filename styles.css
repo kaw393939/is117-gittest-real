@@ -1,0 +1,350 @@
+/* ================================
+   BASE STYLE
+================================ */
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  line-height: 1.7;
+  background: #F7F5F2;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* ================================
+   HEADER + NAV
+================================ */
+
+.site-header {
+  background: #E7E1D5;
+  padding: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  width: 100%;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+  min-height: 72px;
+}
+
+.logo {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #234B70;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+  display: block;
+  transition: font-size 0.2s, letter-spacing 0.2s;
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.nav-btn {
+  text-decoration: none;
+  background: #234B70;
+  padding: 8px 18px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+
+.nav-btn:hover {
+  background: #183A56;
+  text-decoration: underline;
+  color: #fff;
+body.home-page .logo {
+  font-size: 2.4rem;
+  letter-spacing: 0.08em;
+}
+
+body:not(.home-page) .logo {
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 700px) {
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 12px;
+    min-height: 56px;
+  }
+  .logo {
+    font-size: 1.5rem !important;
+    margin-bottom: 6px;
+  }
+  body.home-page .logo {
+    font-size: 1.8rem !important;
+  }
+  .nav {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    font-size: 0.98rem;
+    padding: 7px 12px;
+  }
+}
+}
+
+/* ================================
+   PAGE CARDS (ABOUT + TIMELINE)
+================================ */
+
+.page-card {
+  max-width: 900px;
+  margin: 64px auto;
+  padding: 56px 48px;
+  background: #FFF5E6;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.page-inner {
+  max-width: 720px;
+  margin: auto;
+}
+
+/* Small top decoration */
+.visual-small {
+  width: 100%;
+  max-width: 350px;
+  min-height: 80px;
+  margin: 0 auto 32px auto;
+  background: linear-gradient(120deg, #E8E2CF 60%, #C7DCC0 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6E7A76;
+  font-size: 0.95rem;
+}
+
+/* Blockquote effect */
+.page-inner blockquote {
+  border-left: 3px solid #D4A574;
+  padding-left: 16px;
+  margin: 24px 0;
+  font-style: italic;
+  color: #444;
+  background: rgba(212, 165, 116, 0.06);
+  border-radius: 4px;
+}
+
+/* ================================
+   HERO (HOME PAGE) — FIXED!!
+================================ */
+
+.hero {
+  margin-top: 40px;
+}
+
+.hero-card {
+  background: #FFF9F4;
+  border: 1px solid #E2D2BF;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.hero-content h1 {
+  margin-top: 0;
+}
+
+.hero-visual {
+  margin-top: 24px;
+}
+
+/* --- SENİN FOTOĞRAFIN: books.jpg --- */
+.hero-visual__block {
+  width: 100%;
+  height: 320px;
+  background-image: url("images/books.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.hero-visual__caption {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #555;
+}
+
+/* Pull quote */
+.pull-quote {
+  margin-top: 24px;
+  padding: 16px;
+  background: #EFE7D6;
+  border-left: 4px solid #C7B697;
+  font-style: italic;
+  color: #444;
+  border-radius: 6px;
+}
+
+/* ================================
+   VISUAL CARDS (HOME)
+================================ */
+
+.visual-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.visual-card {
+  background: #FFF9F0;
+  padding: 20px;
+  border: 1px solid #E2D2BF;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  transition: 0.2s;
+}
+
+.visual-card:hover {
+  transform: translateY(-4px);
+  background: #FFF3E4;
+}
+
+.visual-card__block {
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #D5E2C4, #F4E7D0);
+}
+
+/* ================================
+   DESIGNERS PAGE
+================================ */
+
+.person {
+  background: #FFF7E8;
+  padding: 24px;
+  border: 1px solid #E1D6C5;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.avatar {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(90deg, #FFE5C2 0%, #FFD1A1 60%, #FFF7E6 100%);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(255, 193, 120, 0.08);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.person:hover .avatar,
+.person:focus-within .avatar {
+  background: linear-gradient(90deg, #FFD9B0 0%, #FFC285 60%, #FFF9ED 100%);
+  box-shadow: 0 4px 18px 2px rgba(255, 193, 120, 0.18);
+}
+
+
+/* ================================
+   TIMELINE PAGE
+================================ */
+
+.timeline-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #E2D2BF;
+}
+
+.timeline-item summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding-left: 18px;
+  position: relative;
+}
+
+.timeline-item summary::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #777;
+  transition: 0.2s;
+}
+
+.timeline-item[open] summary::before {
+  transform: rotate(90deg);
+  color: #234B70;
+}
+
+/* ================================
+   ABOUT PAGE BACKGROUND (OPTIONAL)
+================================ */
+
+body.page-about {
+  background-image: url("images/books.jpg"); /* İstersen değiştir */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.site-footer {
+  background: #E7E1D5;
+  padding: 18px 0;
+  margin-top: 80px;
+  text-align: center;
+  color: #444;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .visual-row {
+    grid-template-columns: 1fr;
+  }
+  .hero-visual__block {
+    height: 240px;
+  }
+}
+
+body.home-page .logo {
+  font-size: 2.7rem;
+  letter-spacing: 0.07em;
+}
+
+body:not(.home-page) .logo {
+  font-size: 1.7rem;
+  letter-spacing: 0.04em;
+}

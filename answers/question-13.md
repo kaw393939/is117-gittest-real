@@ -1,0 +1,1 @@
+# rm -rf danger – Deletes everything recursively without confirmation; can erase system files.

@@ -1,0 +1,1 @@
+# ls -la – Lists all files (including hidden ones) with detailed info.
